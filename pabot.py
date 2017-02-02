@@ -16,9 +16,12 @@ slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 
 
 def handle_command(command, channel):
-    response = "Hey man. Why don't you " + command  + "?"
+    if 'help' in command:
+        response = "Hey man why don't you help yourself?"
+    else:
+        response = "Sorry man, '" + command + "' is offensive to me"
     slack_client.api_call("chat.postMessage", channel=channel,
-    	text=response, as_user=True)
+        text=response, as_user=True)
 
 
 
